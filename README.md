@@ -1,4 +1,4 @@
-# getsocialapi-python
+# Instagram Scraper API
 
 [![tests](https://github.com/GetSocialAPI/Instagram-Scraper-API/actions/workflows/tests.yml/badge.svg)](https://github.com/GetSocialAPI/Instagram-Scraper-API/actions/workflows/tests.yml)
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
