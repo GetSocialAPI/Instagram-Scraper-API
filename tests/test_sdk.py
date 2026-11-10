@@ -6,8 +6,8 @@ from unittest.mock import MagicMock
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from getsocialapi import Client, InstagramAPI  # noqa: E402
-from getsocialapi.exceptions import (  # noqa: E402
+from getsocialapi_instagram import Client, InstagramAPI  # noqa: E402
+from getsocialapi_instagram.exceptions import (  # noqa: E402
     APIKeyError,
     BadRequestError,
     InstagramError,
@@ -15,7 +15,7 @@ from getsocialapi.exceptions import (  # noqa: E402
     RateLimitError,
     ServiceUnavailableError,
 )
-from getsocialapi.http import Transport  # noqa: E402
+from getsocialapi_instagram.http import Transport  # noqa: E402
 
 
 def fake_response(status, body=None, headers=None):
@@ -57,7 +57,7 @@ class TestErrors(unittest.TestCase):
             self._transport(fake_response(401, {"error": "bad key"})).request("GET", "/x")
 
     def test_400_message_field(self):
-        from getsocialapi.exceptions import BadRequestError, NotFoundError
+        from getsocialapi_instagram.exceptions import BadRequestError, NotFoundError
         e = BadRequestError(body={"message": "Location does not exist.", "status": "fail"})
         self.assertEqual(str(e), "Location does not exist.")
         n = NotFoundError(body={"message": "Location does not exist.", "status": "fail"})

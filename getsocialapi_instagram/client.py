@@ -8,7 +8,7 @@ class Client:
     """GetSocialAPI client.
 
     Usage:
-        from getsocialapi import Client
+        from getsocialapi_instagram import Client
         client = Client(api_key="gsa_live_...")
         client.instagram.user_by_username("durov")
     """

@@ -3,7 +3,7 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "getsocialapi"
+name = "getsocialapi-instagram"
 version = "0.1.0"
 description = "GetSocialAPI — client library for the Instagram API (no cookies, no accounts required)"
 readme = "README.md"
@@ -25,4 +25,4 @@ Homepage = "https://getsocialapi.com"
 Documentation = "https://getsocialapi.com/docs/"
 
 [tool.setuptools.packages.find]
-include = ["getsocialapi*"]
+include = ["getsocialapi_instagram*"]

@@ -14,13 +14,13 @@ Python client for the **[GetSocialAPI](https://getsocialapi.com/)** Instagram Sc
 ## Installation
 
 ```bash
-pip install git+https://github.com/GetSocialAPI/Instagram-Scraper-API.git
+pip install getsocialapi-instagram
 ```
 
 ## Quickstart
 
 ```python
-from getsocialapi import Client
+from getsocialapi_instagram import Client
 
 # Get your API key at https://getsocialapi.com/dashboard/
 client = Client(api_key="gsa_live_...")  # or set GETSOCIALAPI_API_KEY
@@ -120,7 +120,7 @@ Full request/response reference with live examples:
 | `InstagramError` | any | upstream Instagram error, `.status` |
 
 ```python
-from getsocialapi import NotFoundError, RateLimitError
+from getsocialapi_instagram import NotFoundError, RateLimitError
 import time
 
 try:
