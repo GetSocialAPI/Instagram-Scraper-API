@@ -18,11 +18,17 @@ jobs:
         run: |
           python -m pip install --upgrade build twine
           python -m build
-          twine check dist/*
+          python -m build legacy-getsocialapi
+          twine check dist/* legacy-getsocialapi/dist/*
       - uses: actions/upload-artifact@v4
         with:
-          name: dist
+          name: dist-main
           path: dist/
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-legacy
+          path: legacy-getsocialapi/dist/
           if-no-files-found: error
 
   publish:
@@ -34,7 +40,17 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: dist
-          path: dist/
-      - name: Publish to PyPI
+          name: dist-main
+          path: dist-main/
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-legacy
+          path: dist-legacy/
+      - name: Publish getsocialapi-instagram to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist-main/
+      - name: Publish getsocialapi shim to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist-legacy/

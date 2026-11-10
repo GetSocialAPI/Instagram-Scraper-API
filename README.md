@@ -17,6 +17,23 @@ Python client for the **[GetSocialAPI](https://getsocialapi.com/)** Instagram Sc
 pip install getsocialapi-instagram
 ```
 
+## Migration from `getsocialapi` (git installs)
+
+Before the PyPI release this SDK was installed from git as `getsocialapi`.
+Old imports keep working via a deprecated shim, but please migrate:
+
+```bash
+pip uninstall getsocialapi
+pip install getsocialapi-instagram
+```
+
+```python
+# before
+from getsocialapi import Client
+# after
+from getsocialapi_instagram import Client
+```
+
 ## Quickstart
 
 ```python
