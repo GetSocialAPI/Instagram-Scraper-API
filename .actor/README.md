@@ -4,6 +4,8 @@ Get Instagram profiles, posts, stories, followers, comments, and more with 22
 GetSocialAPI operations on Apify. Run this Actor with your Apify account.
 No separate GetSocialAPI account or API key is required.
 
+**No Instagram account or Instagram session cookies are required.**
+
 ## Input examples
 
 Get a profile by username:
