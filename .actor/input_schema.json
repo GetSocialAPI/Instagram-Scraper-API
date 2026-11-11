@@ -1,0 +1,92 @@
+{
+  "title": "Instagram Scraper API",
+  "description": "Select an operation and enter its target.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "operation": {
+      "title": "Operation",
+      "type": "string",
+      "description": "Which Instagram endpoint to call.",
+      "editor": "select",
+      "enum": [
+        "profile",
+        "profile_by_id",
+        "user_info",
+        "user_about",
+        "search_users",
+        "similar_users",
+        "posts",
+        "tagged_posts",
+        "stories",
+        "highlights",
+        "highlight_stories",
+        "followers",
+        "following",
+        "media_info",
+        "media_likers",
+        "comments",
+        "search_reels",
+        "hashtag_info",
+        "search_hashtags",
+        "hashtag_posts",
+        "location_info",
+        "location_posts"
+      ],
+      "default": "profile"
+    },
+    "target": {
+      "title": "Target",
+      "type": "string",
+      "description": "Username, numeric ID, shortcode, hashtag, or search term, depending on the selected operation.",
+      "editor": "textfield",
+      "minLength": 1
+    },
+    "usernames": {
+      "title": "Usernames",
+      "type": "array",
+      "description": "For the profile operation, enter multiple usernames here and leave Target empty.",
+      "editor": "stringList",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "count": {
+      "title": "Page size",
+      "type": "integer",
+      "description": "Optional size for posts, tagged posts, followers, following, comments, and user search.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "max_id": {
+      "title": "Page cursor",
+      "type": "string",
+      "description": "Optional next_max_id from a previous page of posts, tagged posts, followers, following, hashtag posts, or location posts.",
+      "editor": "textfield"
+    },
+    "min_id": {
+      "title": "Comments cursor",
+      "type": "string",
+      "description": "Optional next_min_id from a previous page of comments.",
+      "editor": "textfield"
+    },
+    "query": {
+      "title": "Name filter",
+      "type": "string",
+      "description": "Optional name filter for followers or following.",
+      "editor": "textfield"
+    },
+    "sort_order": {
+      "title": "Comment sort order",
+      "type": "string",
+      "description": "Optional for comments. Recent is the default and supports cursor pagination.",
+      "editor": "select",
+      "enum": [
+        "recent",
+        "ranked"
+      ]
+    }
+  }
+}
