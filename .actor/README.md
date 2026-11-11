@@ -1,9 +1,8 @@
 # Instagram Scraper API
 
-Run the GetSocialAPI Instagram SDK through Apify. Set the Actor's
-`GETSOCIALAPI_API_KEY` secret environment variable in Apify Console before
-building. Each request writes one Dataset row containing the operation, target,
-and the raw API response in `data`.
+Get Instagram profiles, posts, stories, followers, comments, and more with 22
+GetSocialAPI operations on Apify. Run this Actor with your Apify account.
+No separate GetSocialAPI account or API key is required.
 
 ## Input examples
 
@@ -25,6 +24,13 @@ Get a page of posts for a numeric Instagram user ID:
 {"operation": "posts", "target": "25025320", "count": 12}
 ```
 
+## Pricing and output
+
+Apify charges for each API response saved to the default Dataset. Each row
+contains `operation`, `target`, and the raw API response in `data`. A single
+profile uses one event. A page of 25 followers also uses one event for the whole
+page. See the Pricing tab for the current rate.
+
 ## Operations
 
 | Target | Operations |
@@ -40,7 +46,10 @@ Get a page of posts for a numeric Instagram user ID:
 Use `count` with `search_users`, `posts`, `tagged_posts`, `followers`,
 `following`, and `comments`. Use `query` to filter followers or following.
 
-Each list call returns one page. For `posts`, `tagged_posts`, `followers`,
+Each list call returns one page. For verified profiles, `followers` returns
+a single page of up to approximately 50 followers and no continuation cursor.
+
+For `posts`, `tagged_posts`, `followers`,
 `following`, `hashtag_posts`, or `location_posts`, pass `data.next_max_id` as
 `max_id` in the next run when the response includes a cursor. For `comments`,
 pass `data.next_min_id` as `min_id` and use the default `sort_order` of
