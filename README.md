@@ -87,29 +87,24 @@ Client(api_key=None, base_url="https://api.getsocialapi.com/v1", timeout=30, max
 | `profile(user_id)` | `/profile/<id>` | profile by numeric id |
 | `user_info(user_id)` | `/ig/user/info/<id>` | profile by numeric id |
 | `user_by_username(username)` | `/ig/user/username_info/<username>` | profile by username |
-| `user_about(user_id)` | `/user/about/<id>` | About this account: country, joined, former usernames, shared-followers count, verified |
 | `search_username(query, count=10)` | `/search/username/<q>` | search users, resolve username → pk |
 | `similar_users(user_id)` | `/ig/user/similar/<id>` | suggested accounts |
 | `user_medias(user_id, count=12, max_id=None)` | `/ig/user/media/<id>` | profile grid posts |
 | `user_tags(user_id, count=12, max_id=None)` | `/ig/user/tags/<id>` | posts with the user tagged |
 | `user_stories(user_id)` | `/ig/user/stories/<id>` | active stories |
 | `user_highlights(user_id)` | `/ig/user/highlights/<id>` | highlights tray |
-| `highlight_stories(highlight_id)` | `/ig/highlight/stories/<id>` | media of a highlight |
 | `followers(user_id, count=50, max_id=None, query=None)` | `/followers/<id>` | followers list |
 | `following(user_id, count=25, max_id=None, query=None)` | `/following/<id>` | following list |
 | `media_info(media)` | `/ig/media/info/<pk\|shortcode>` | full media card; accepts numeric pk or shortcode |
 | `media_likers(media)` | `/ig/media/likers/<pk\|shortcode>` | users who liked (up to ~100, no pagination) |
 | `media_comments(media, count=None, sort_order="recent", min_id=None)` | `/ig/media/comments/<pk\|shortcode>` | media comments; cursor pagination `next_min_id` → `min_id` |
-| `search_clips(keyword)` | `/ig/media/search_clips/<kw>` | search reels by keyword |
 | `hashtag_info(tag)` | `/ig/hashtag/info/<tag>` | hashtag card |
 | `hashtag_search(query)` | `/ig/hashtag/search/<q>` | search hashtags |
-| `hashtag_posts(tag, max_id=None)` | `/v2/hashtag/posts/<tag>` | posts by hashtag |
 | `location_info(pk)` | `/ig/location/info/<pk>` | location card |
-| `location_media(pk, max_id=None)` | `/ig/location/media/<pk>` | media by location |
 
 Every method returns the raw JSON of the API route as received — nothing is
 unwrapped, filtered or renamed. Where the API supports pagination (`followers`*, `following`, `user_medias`,
-`user_tags`, `hashtag_posts`, `location_media`), pass the cursor from the
+`user_tags`), pass the cursor from the
 previous response (`next_max_id`) as `max_id`.
 `media_comments` paginates with a different cursor: always request with
 `sort_order="recent"` (the default) and pass `next_min_id` back as `min_id`
@@ -117,8 +112,7 @@ until it comes back null — pages are chronological and disjoint. Instagram
 never returns `next_max_id` for comments, so `max_id` must not be used there.
 *`followers` works on unverified accounts (nearly the full list, plus the
 `query` filter); verified accounts (blue checkmark) expose no more than ~50
-followers — one page, no cursor, `query` ignored. For lists without cursors
-(`search_clips`, `hashtag_search`) each call simply returns the service page.
+followers — one page, no cursor, `query` ignored. `hashtag_search` returns one page without a cursor.
 
 Full request/response reference with live examples:
 [docs.getsocialapi → API Reference](https://getsocialapi.com/docs/api/instagram/user/get_info_by_id/)

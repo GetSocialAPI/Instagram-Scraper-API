@@ -66,16 +66,6 @@ class InstagramAPI:
         """GET /profile/{user_id} — profile by numeric id."""
         return self._t.request("GET", f"/profile/{_digits(user_id, 'user_id')}")
 
-    def user_about(self, user_id):
-        """GET /user/about/{user_id} — About this account.
-
-        The "About this account" screen: country, registration month,
-        former usernames count, accounts-with-shared-followers count,
-        verification. Sparse accounts return null fields — check
-        `has_about_data` / `unavailable` before using them.
-        """
-        return self._t.request("GET", f"/user/about/{_digits(user_id, 'user_id')}")
-
     def search_username(self, query, count=10):
         """GET /search/username/{query} — search users.
 
@@ -108,17 +98,6 @@ class InstagramAPI:
     def user_highlights(self, user_id):
         """GET /ig/user/highlights/{user_id} — highlights tray."""
         return self._t.request("GET", f"/ig/user/highlights/{_digits(user_id, 'user_id')}")
-
-    def highlight_stories(self, highlight_id):
-        """GET /ig/highlight/stories/{highlight_id} — media of a highlight.
-
-        Accepts the tray id as is — the leading `highlight:` prefix
-        (as returned by `user_highlights`) is trimmed automatically.
-        """
-        hid = str(highlight_id)
-        if hid.startswith("highlight:"):
-            hid = hid[len("highlight:"):]
-        return self._t.request("GET", f"/ig/highlight/stories/{_quote(_length(hid, 'highlight_id', 1, 64))}")
 
     # ---------- Followers / following ----------
 
@@ -199,15 +178,6 @@ class InstagramAPI:
         return self._t.request("GET", f"/ig/media/comments/{_media_arg(media)}",
                                params=params)
 
-    def search_clips(self, keyword):
-        """GET /ig/media/search_clips/{keyword} — search reels by keyword.
-
-        The service returns its native page (~12 clips); a page-size
-        parameter is not supported by the API for this route.
-        """
-        kw = _length(keyword, "keyword", 1, 100)
-        return self._t.request("GET", f"/ig/media/search_clips/{_quote(kw)}")
-
     # ---------- Hashtags ----------
 
     def hashtag_info(self, tag):
@@ -222,32 +192,11 @@ class InstagramAPI:
         """
         return self._t.request("GET", f"/ig/hashtag/search/{_quote(query)}")
 
-    def hashtag_posts(self, tag, max_id=None):
-        """GET /v2/hashtag/posts/{tag} — posts by hashtag. A leading # is trimmed.
-
-        The service returns its native page (~15-18 posts) plus `next_max_id`
-        for pagination via `max_id`; a page-size parameter is not supported.
-        """
-        params = {"max_id": max_id} if max_id is not None else None
-        return self._t.request("GET", f"/v2/hashtag/posts/{_tag(tag)}",
-                               params=params)
-
     # ---------- Locations ----------
 
     def location_info(self, pk):
         """GET /ig/location/info/{pk} — location card."""
         return self._t.request("GET", f"/ig/location/info/{_digits(pk, 'pk')}")
-
-    def location_media(self, pk, max_id=None):
-        """GET /ig/location/media/{pk} — media by location.
-
-        The service returns its native page; pass `next_max_id` from a
-        previous response as `max_id` to request the next page. The
-        response also carries `next_page` — a page counter, not a cursor.
-        """
-        params = {"max_id": max_id} if max_id is not None else None
-        return self._t.request("GET", f"/ig/location/media/{_digits(pk, 'pk')}",
-                               params=params)
 
 
 def _page(count, max_id, default=12, hi=50):

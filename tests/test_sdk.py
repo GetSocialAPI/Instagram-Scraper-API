@@ -107,15 +107,8 @@ class TestInstagramAPI(unittest.TestCase):
     def test_user_info(self):
         self.check("user_info", (25025320,), "/ig/user/info/25025320")
 
-    def test_user_about(self):
-        self.check("user_about", (25025320,), "/user/about/25025320")
-
     def test_hashtag_info_trims_hash(self):
         self.check("hashtag_info", ("#gymgirl",), "/ig/hashtag/info/gymgirl")
-
-    def test_hashtag_posts_trims_hash(self):
-        self.check("hashtag_posts", ("#gymgirl",), "/v2/hashtag/posts/gymgirl")
-        self.check("hashtag_posts", ("##gym girl",), "/v2/hashtag/posts/gym%20girl")
 
     def test_username_info(self):
         self.check("user_by_username", ("instagram",), "/ig/user/username_info/instagram")
@@ -186,31 +179,8 @@ class TestInstagramAPI(unittest.TestCase):
         with self.assertRaises(ValueError):
             a.media_comments(3141085633626004499, count=51)
 
-    def test_hashtag_posts_default(self):
-        self.check("hashtag_posts", ("gymgirl",), "/v2/hashtag/posts/gymgirl")
-
-    def test_hashtag_posts_max_id(self):
-        self.check("hashtag_posts", ("gymgirl",), "/v2/hashtag/posts/gymgirl",
-                   {"max_id": "CUR"}, {"max_id": "CUR"})
-
-    def test_location_media(self):
-        self.check("location_media", (213069402,), "/ig/location/media/213069402")
-
-    def test_location_media_max_id(self):
-        self.check("location_media", (213069402,), "/ig/location/media/213069402",
-                   {"max_id": "NEXT"}, {"max_id": "NEXT"})
-
-    def test_search_clips(self):
-        self.check("search_clips", ("hello world",), "/ig/media/search_clips/hello%20world")
-
     def test_hashtag_search_no_count(self):
         self.check("hashtag_search", ("gym girl",), "/ig/hashtag/search/gym%20girl")
-
-    def test_highlight_stories_trims_prefix(self):
-        self.check("highlight_stories", ("highlight:18223279177302854",),
-                   "/ig/highlight/stories/18223279177302854")
-        self.check("highlight_stories", ("18223279177302854",),
-                   "/ig/highlight/stories/18223279177302854")
 
     def test_validations(self):
         a, _ = self.api()
@@ -221,8 +191,6 @@ class TestInstagramAPI(unittest.TestCase):
         ]:
             with self.assertRaises(ValueError):
                 fn(bad) if fn not in (a.user_medias,) else fn(1, count=0)
-        with self.assertRaises(ValueError):
-            a.search_clips("")
 
 
 if __name__ == "__main__":
