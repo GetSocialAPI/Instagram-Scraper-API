@@ -16,6 +16,7 @@ OPERATIONS = {
     "tagged_posts": ("user_tags", ("count", "max_id")),
     "stories": ("user_stories", ()),
     "highlights": ("user_highlights", ()),
+    "highlight_stories": ("highlight_stories", ()),
     "followers": ("followers", ("count", "max_id", "query")),
     "following": ("following", ("count", "max_id", "query")),
     "media_info": ("media_info", ()),

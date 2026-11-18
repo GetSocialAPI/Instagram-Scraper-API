@@ -182,6 +182,11 @@ class TestInstagramAPI(unittest.TestCase):
     def test_hashtag_search_no_count(self):
         self.check("hashtag_search", ("gym girl",), "/ig/hashtag/search/gym%20girl")
 
+    def test_highlight_stories_accepts_tray_id(self):
+        path = "/ig/highlight/stories/18142207969557132"
+        self.check("highlight_stories", ("highlight:18142207969557132",), path)
+        self.check("highlight_stories", ("18142207969557132",), path)
+
     def test_validations(self):
         a, _ = self.api()
         for fn, bad in [

@@ -99,6 +99,17 @@ class InstagramAPI:
         """GET /ig/user/highlights/{user_id} — highlights tray."""
         return self._t.request("GET", f"/ig/user/highlights/{_digits(user_id, 'user_id')}")
 
+    def highlight_stories(self, highlight_id):
+        """GET /ig/highlight/stories/{highlight_id} — media of a highlight.
+
+        Accepts the tray id as is — the leading `highlight:` prefix
+        (as returned by `user_highlights`) is trimmed automatically.
+        """
+        hid = str(highlight_id)
+        if hid.startswith("highlight:"):
+            hid = hid[len("highlight:"):]
+        return self._t.request("GET", f"/ig/highlight/stories/{_quote(_length(hid, 'highlight_id', 1, 64))}")
+
     # ---------- Followers / following ----------
 
     def followers(self, user_id, count=50, max_id=None, query=None):

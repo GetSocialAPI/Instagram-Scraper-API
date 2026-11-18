@@ -19,6 +19,7 @@
         "tagged_posts",
         "stories",
         "highlights",
+        "highlight_stories",
         "followers",
         "following",
         "media_info",

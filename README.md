@@ -93,6 +93,7 @@ Client(api_key=None, base_url="https://api.getsocialapi.com/v1", timeout=30, max
 | `user_tags(user_id, count=12, max_id=None)` | `/ig/user/tags/<id>` | posts with the user tagged |
 | `user_stories(user_id)` | `/ig/user/stories/<id>` | active stories |
 | `user_highlights(user_id)` | `/ig/user/highlights/<id>` | highlights tray |
+| `highlight_stories(highlight_id)` | `/ig/highlight/stories/<id>` | media of a highlight |
 | `followers(user_id, count=50, max_id=None, query=None)` | `/followers/<id>` | followers list |
 | `following(user_id, count=25, max_id=None, query=None)` | `/following/<id>` | following list |
 | `media_info(media)` | `/ig/media/info/<pk\|shortcode>` | full media card; accepts numeric pk or shortcode |
