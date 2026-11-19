@@ -12,7 +12,7 @@ OPERATIONS = {
     "user_info": ("user_info", ()),
     "search_users": ("search_username", ("count",)),
     "similar_users": ("similar_users", ()),
-    "posts": ("user_medias", ("count", "max_id")),
+    "posts": ("user_medias", ("max_id",)),
     "tagged_posts": ("user_tags", ("count", "max_id")),
     "stories": ("user_stories", ()),
     "highlights": ("user_highlights", ()),

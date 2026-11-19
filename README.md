@@ -47,7 +47,7 @@ user = client.instagram.user_info(25025320)
 print(user["user"]["follower_count"])
 
 # Posts (grid)
-medias = client.instagram.user_medias(25025320, count=12)
+medias = client.instagram.user_medias(25025320)
 
 # Followers / following — paginated on unverified accounts: pass `next_max_id`
 # back as `max_id`. Verified accounts (blue checkmark) expose ~50 followers max.
@@ -89,7 +89,7 @@ Client(api_key=None, base_url="https://api.getsocialapi.com/v1", timeout=30, max
 | `user_by_username(username)` | `/ig/user/username_info/<username>` | profile by username |
 | `search_username(query, count=10)` | `/search/username/<q>` | search users, resolve username → pk |
 | `similar_users(user_id)` | `/ig/user/similar/<id>` | suggested accounts |
-| `user_medias(user_id, count=12, max_id=None)` | `/ig/user/media/<id>` | profile grid posts |
+| `user_medias(user_id, *, max_id=None)` | `/ig/user/media/<id>` | up to 12 profile posts per page |
 | `user_tags(user_id, count=12, max_id=None)` | `/ig/user/tags/<id>` | posts with the user tagged |
 | `user_stories(user_id)` | `/ig/user/stories/<id>` | active stories |
 | `user_highlights(user_id)` | `/ig/user/highlights/<id>` | highlights tray |

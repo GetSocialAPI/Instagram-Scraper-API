@@ -45,8 +45,9 @@ page. See the Pricing tab for the current rate.
 | Hashtag | `hashtag_info` |
 | Location ID | `location_info` |
 
-Use `count` with `search_users`, `posts`, `tagged_posts`, `followers`,
-`following`, and `comments`. Use `query` to filter followers or following.
+Profile posts return up to 12 items per page. Use `count` with `search_users`,
+`tagged_posts`, `followers`, `following`, and `comments`. Use `query` to filter
+followers or following.
 
 Each list call returns one page. For verified profiles, `followers` returns
 a single page of up to approximately 50 followers and no continuation cursor.

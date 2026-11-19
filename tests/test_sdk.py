@@ -117,11 +117,11 @@ class TestInstagramAPI(unittest.TestCase):
         self.check("search_username", ("du",), "/search/username/du", {"count": 10})
 
     def test_user_medias(self):
-        self.check("user_medias", (25025320,), "/ig/user/media/25025320", {"count": 12})
+        self.check("user_medias", (25025320,), "/ig/user/media/25025320", {})
 
     def test_user_medias_max_id(self):
         self.check("user_medias", (25025320,), "/ig/user/media/25025320",
-                   {"count": 50, "max_id": "CUR"}, {"count": 50, "max_id": "CUR"})
+                   {"max_id": "CUR"}, {"max_id": "CUR"})
 
     def test_followers_default(self):
         self.check("followers", (25025320,), "/followers/25025320", {"count": 50})
@@ -192,10 +192,9 @@ class TestInstagramAPI(unittest.TestCase):
         for fn, bad in [
             (a.user_info, "12x"),
             (a.user_by_username, ""),
-            (a.user_medias, 0),
         ]:
             with self.assertRaises(ValueError):
-                fn(bad) if fn not in (a.user_medias,) else fn(1, count=0)
+                fn(bad)
 
 
 if __name__ == "__main__":

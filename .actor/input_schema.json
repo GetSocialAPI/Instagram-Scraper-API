@@ -51,7 +51,7 @@
     "count": {
       "title": "Page size",
       "type": "integer",
-      "description": "Optional size for posts, tagged posts, followers, following, comments, and user search.",
+      "description": "Optional size for tagged posts, followers, following, comments, and user search. Profile posts return up to 12 items per page.",
       "editor": "number",
       "minimum": 1,
       "maximum": 50

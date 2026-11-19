@@ -81,10 +81,11 @@ class InstagramAPI:
 
     # ---------- User content ----------
 
-    def user_medias(self, user_id, count=12, max_id=None):
-        """GET /ig/user/media/{user_id} — profile grid posts."""
+    def user_medias(self, user_id, *, max_id=None):
+        """GET /ig/user/media/{user_id} — up to 12 profile posts per page."""
+        params = {} if max_id is None else {"max_id": max_id}
         return self._t.request("GET", f"/ig/user/media/{_digits(user_id, 'user_id')}",
-                               params=_page(count, max_id, default=12))
+                               params=params)
 
     def user_tags(self, user_id, count=12, max_id=None):
         """GET /ig/user/tags/{user_id} — posts where the user is tagged."""
