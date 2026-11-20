@@ -66,6 +66,16 @@ class InstagramAPI:
         """GET /profile/{user_id} — profile by numeric id."""
         return self._t.request("GET", f"/profile/{_digits(user_id, 'user_id')}")
 
+    def user_about(self, user_id):
+        """GET /user/about/{user_id} — About this account.
+
+        The "About this account" screen: country, registration month,
+        former usernames count, accounts-with-shared-followers count,
+        verification. Sparse accounts return null fields — check
+        `has_about_data` / `unavailable` before using them.
+        """
+        return self._t.request("GET", f"/user/about/{_digits(user_id, 'user_id')}")
+
     def search_username(self, query, count=10):
         """GET /search/username/{query} — search users.
 

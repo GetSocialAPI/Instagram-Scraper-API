@@ -87,6 +87,7 @@ Client(api_key=None, base_url="https://api.getsocialapi.com/v1", timeout=30, max
 | `profile(user_id)` | `/profile/<id>` | profile by numeric id |
 | `user_info(user_id)` | `/ig/user/info/<id>` | profile by numeric id |
 | `user_by_username(username)` | `/ig/user/username_info/<username>` | profile by username |
+| `user_about(user_id)` | `/user/about/<id>` | About this account |
 | `search_username(query, count=10)` | `/search/username/<q>` | search users, resolve username → pk |
 | `similar_users(user_id)` | `/ig/user/similar/<id>` | suggested accounts |
 | `user_medias(user_id, *, max_id=None)` | `/ig/user/media/<id>` | up to 12 profile posts per page |

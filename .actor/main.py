@@ -10,6 +10,7 @@ OPERATIONS = {
     "profile": ("user_by_username", ()),
     "profile_by_id": ("profile", ()),
     "user_info": ("user_info", ()),
+    "user_about": ("user_about", ()),
     "search_users": ("search_username", ("count",)),
     "similar_users": ("similar_users", ()),
     "posts": ("user_medias", ("max_id",)),

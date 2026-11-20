@@ -107,6 +107,9 @@ class TestInstagramAPI(unittest.TestCase):
     def test_user_info(self):
         self.check("user_info", (25025320,), "/ig/user/info/25025320")
 
+    def test_user_about(self):
+        self.check("user_about", (25025320,), "/user/about/25025320")
+
     def test_hashtag_info_trims_hash(self):
         self.check("hashtag_info", ("#gymgirl",), "/ig/hashtag/info/gymgirl")
 

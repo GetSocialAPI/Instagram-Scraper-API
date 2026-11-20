@@ -38,7 +38,7 @@ page. See the Pricing tab for the current rate.
 | Target | Operations |
 | --- | --- |
 | Username | `profile` |
-| Instagram user ID | `profile_by_id`, `user_info`, `similar_users`, `posts`, `tagged_posts`, `stories`, `highlights`, `followers`, `following` |
+| Instagram user ID | `profile_by_id`, `user_info`, `user_about`, `similar_users`, `posts`, `tagged_posts`, `stories`, `highlights`, `followers`, `following` |
 | Highlight ID | `highlight_stories` |
 | Media ID or shortcode | `media_info`, `media_likers`, `comments` |
 | Search term | `search_users`, `search_hashtags` |
